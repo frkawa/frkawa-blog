@@ -15,8 +15,11 @@ services:
   rails:
     build:
       context: ./rails
+    environment:
+      MYSQL_ROOT_PASSWORD: password
     volumes:
       - ./rails:/app
+      - gem_data:/usr/local/bundle
     ports:
       - 3000:3000
     depends_on:
@@ -34,3 +37,4 @@ services:
   #     - "8000:3000"
 volumes:
   mysql_data:
+  gem_data:
