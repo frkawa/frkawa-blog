@@ -1,0 +1,36 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0.35
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: frkawa_blog_development
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+  rails:
+    build:
+      context: ./rails
+    volumes:
+      - ./rails:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    tty: true
+    stdin_open: true
+  # next:
+  #   build:
+  #     dockerfile: ./next/Dockerfile
+  #   tty: true
+  #   stdin_open: true
+  #   volumes:
+  #     - ./next:/app
+  #   ports:
+  #     - "8000:3000"
+volumes:
+  mysql_data:
