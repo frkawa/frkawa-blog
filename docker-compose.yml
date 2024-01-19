@@ -17,6 +17,7 @@ services:
       context: ./rails
     environment:
       MYSQL_ROOT_PASSWORD: password
+    command: bash -c "tail -f log/development.log"
     volumes:
       - ./rails:/app
       - gem_data:/usr/local/bundle
@@ -26,15 +27,15 @@ services:
       - db
     tty: true
     stdin_open: true
-  # next:
-  #   build:
-  #     dockerfile: ./next/Dockerfile
-  #   tty: true
-  #   stdin_open: true
-  #   volumes:
-  #     - ./next:/app
-  #   ports:
-  #     - "8000:3000"
+  next:
+    build:
+      dockerfile: ./next/Dockerfile
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./next:/app
+    ports:
+      - "8000:3000"
 volumes:
   mysql_data:
   gem_data:
