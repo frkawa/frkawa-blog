@@ -19,7 +19,7 @@ jobs:
         options: --health-cmd "mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 10
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Ruby 3.2.2
         uses: ruby/setup-ruby@v1
@@ -40,3 +40,26 @@ jobs:
 
       - name: Run RSpec
         run: bundle exec rspec
+
+  rubocop:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rails
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby 3.2.2
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.2
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run rubocop
+        run: bundle exec rubocop
