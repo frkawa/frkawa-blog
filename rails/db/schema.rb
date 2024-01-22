@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_21_161850) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_22_141816) do
   create_table "admin_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
@@ -21,4 +21,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_21_161850) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "admin_user_id"
+    t.string "title", null: false
+    t.text "body", null: false
+    t.string "status", null: false
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["admin_user_id"], name: "index_articles_on_admin_user_id"
+  end
+
+  add_foreign_key "articles", "admin_users"
 end
