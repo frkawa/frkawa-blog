@@ -41,5 +41,10 @@ module App
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.i18n.default_locale = :ja
+
+    # NOTE: api modeではそのままではsessionが使えないためmiddlewareを追加
+    config.session_store :cookie_store, key: '_interslice_session'
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use config.session_store, config.session_options
   end
 end

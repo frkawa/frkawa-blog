@@ -12,3 +12,26 @@ Content-Type: application/json
   "password":"password",
   "password_confirmation":"password"
 }
+
+###
+
+## サインイン
+POST http://localhost:3000/api/v1/auth/sign_in
+Content-Type: application/json
+
+{
+  "email": "test1@example.com",
+  "password": "password"
+}
+
+###
+
+## サインアウト
+DELETE http://localhost:3000/api/v1/auth/sign_out
+Content-Type: application/json
+
+{
+  "uid": "test1@example.com",
+  "access-token": "3necwYKOUjoWF8viYYHK0g",
+  "client": "wV7ecQqfE2aOqW-pJ-5ZjQ"
+}
