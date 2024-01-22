@@ -109,6 +109,8 @@ GEM
     diff-lcs (1.5.0)
     drb (2.2.0)
       ruby2_keywords
+    enumerize (2.7.0)
+      activesupport (>= 3.2)
     erubi (1.12.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
@@ -279,6 +281,7 @@ DEPENDENCIES
   devise
   devise-i18n
   devise_token_auth (>= 1.2.0)!
+  enumerize
   mysql2 (~> 0.5)
   puma (>= 5.0)
   rails (~> 7.1.3)

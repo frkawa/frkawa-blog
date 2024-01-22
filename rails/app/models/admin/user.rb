@@ -9,5 +9,5 @@ class Admin::User < ApplicationRecord
   devise :database_authenticatable, :registerable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  has_many :articles, foreign_key: 'admin_user_id'
+  has_many :articles, foreign_key: 'admin_user_id', dependent: :restrict_with_error, inverse_of: :user
 end
