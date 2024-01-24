@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       get 'health_check', to: 'health_check#index'
 
       mount_devise_token_auth_for 'Admin::User', at: 'auth'
+
+      resources :articles, only: %i[index show create update destroy]
     end
   end
 
