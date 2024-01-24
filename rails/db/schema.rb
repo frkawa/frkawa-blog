@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_22_160549) do
-  create_table "admin_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "provider", default: "email", null: false
-    t.string "uid", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "email", null: false
-    t.text "tokens"
+ActiveRecord::Schema[7.1].define(version: 2024_01_24_140745) do
+  create_table "admin_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", comment: "管理者ユーザー", force: :cascade do |t|
+    t.string "provider", default: "email", null: false, comment: "認証プロバイダー"
+    t.string "uid", default: "", null: false, comment: "UID"
+    t.string "encrypted_password", default: "", null: false, comment: "暗号化されたパスワード"
+    t.string "email", null: false, comment: "メールアドレス"
+    t.text "tokens", comment: "トークン"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
   end
 
-  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "admin_user_id"
-    t.string "title", null: false
-    t.text "body", null: false
-    t.string "status", null: false
-    t.datetime "published_at"
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", comment: "記事", force: :cascade do |t|
+    t.bigint "admin_user_id", comment: "管理者ユーザーID"
+    t.string "title", null: false, comment: "タイトル"
+    t.text "body", null: false, comment: "本文"
+    t.string "status", null: false, comment: "ステータス"
+    t.datetime "published_at", comment: "公開日時"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_user_id"], name: "index_articles_on_admin_user_id"
