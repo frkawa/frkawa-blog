@@ -3,7 +3,7 @@ class Article < ApplicationRecord
 
   belongs_to :user, class_name: 'Admin::User', foreign_key: :admin_user_id, inverse_of: :articles
 
-  enumerize :status, in: %i[draft published private], default: :draft
+  enumerize :status, in: %i[draft published archived], default: :draft
 
   validates :title, presence: true
   validates :body, presence: true

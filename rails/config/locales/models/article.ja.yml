@@ -9,3 +9,10 @@ ja:
         body: 本文
         published_at: 公開日時
         status: ステータス
+
+  enumerize:
+    article:
+      status:
+        draft: 下書き
+        published: 公開
+        archived: アーカイブ

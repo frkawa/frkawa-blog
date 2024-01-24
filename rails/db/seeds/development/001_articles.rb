@@ -15,9 +15,9 @@ user.articles.create!(
       published_at: Time.current,
     },
     {
-      title: '非公開記事タイトル3',
-      body: '非公開記事本文3',
-      status: Article.status.private,
+      title: 'アーカイブ記事タイトル3',
+      body: 'アーカイブ記事本文3',
+      status: Article.status.archived,
       published_at: Time.current,
     },
   ],

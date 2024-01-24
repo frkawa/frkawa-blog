@@ -9,6 +9,6 @@ RSpec.describe Article, type: :model do
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:body) }
     it { is_expected.to validate_presence_of(:status) }
-    it { is_expected.to enumerize(:status).in(:draft, :published, :private).with_default(:draft) }
+    it { is_expected.to enumerize(:status).in(:draft, :published, :archived).with_default(:draft) }
   end
 end
