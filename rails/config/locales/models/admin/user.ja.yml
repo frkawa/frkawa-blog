@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      admin/user: 管理ユーザー
+
+    attributes:
+      admin/user:
+        provider: 認証プロバイダー
+        uid: UID
+        encrypted_password: 暗号化されたパスワード
+        email: メールアドレス
+        tokens: トークン
