@@ -13,7 +13,7 @@ class Api::V1::ArticlesController < Api::V1::BaseController
 
   private
 
-  def article_params
-    params.require(:article).permit(:title, :body, :status).merge(published_at: Time.current)
-  end
+    def article_params
+      params.require(:article).permit(:title, :body, :status).merge(published_at: Time.current)
+    end
 end
