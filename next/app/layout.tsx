@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="bg-my-dark-blue text-white">
+      <body className="bg-my-dark text-white">
         <div className="grid grid-cols-10 gap-5 mx-auto max-w-7xl px-40">
           <Header />
           {children}

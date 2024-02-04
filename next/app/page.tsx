@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 import ArticleCard from "./(components)/ArticleCard";
+import TagCards from "./(components)/TagCards";
 import authorIcon from "/public/author_icon.png";
 
 export default function Home() {
@@ -11,8 +12,9 @@ export default function Home() {
       <main className="col-span-7">
         <ArticleCard />
         <ArticleCard />
+        <ArticleCard />
       </main>
-      <aside className="col-span-3 bg-my-middle-blue p-6 rounded-3xl mb-8 min-w-full">
+      <aside className="col-span-3 bg-my-dark-blue p-6 rounded-3xl mb-8 min-w-full">
         <section className="text-center">
           <Image src={authorIcon} alt="author icon" width={100} height={100} className="mx-auto mb-3" />
           <div className="mb-1">AUTHOR: frkawa</div>
@@ -32,6 +34,7 @@ export default function Home() {
           <li>2023年11月</li>
         </ul>
         <h2 className="text-xl font-bold mb-2 mt-7">TAGS</h2>
+        <TagCards />
       </aside>
     </>
   );
