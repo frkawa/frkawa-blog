@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'my-dark': '#212121',
-        'my-dark-blue': '#32383e',
-        'my-emphasis-yellow': '#facf5a',
-        'my-emphasis-rose': '#ff5959',
+        'my-dark': '#161e26',
+        'my-card-blue': '#252c32',
+        'my-light-blue': '#b9d8ef',
+        'my-emphasis-sky': '#00ffee',
       },
     },
     fontFamily: {

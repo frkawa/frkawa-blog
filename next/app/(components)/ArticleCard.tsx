@@ -4,8 +4,8 @@ import TagCards from './TagCards'
 
 const ArticleCard = () => {
   return (
-    <div className='bg-my-dark-blue p-6 rounded-3xl mb-8'>
-      <div className='flex gap-7 text-my-emphasis-yellow'>
+    <div className='bg-my-card-blue p-6 rounded-3xl mb-8'>
+      <div className='flex gap-7 text-my-light-blue'>
         <span className='flex gap-2 font-josefinSans leading-5'>
           <FontAwesomeIcon icon={faClock} className='h-4' />
           2024-01-30

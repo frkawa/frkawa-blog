@@ -15,7 +15,7 @@ export default function Home() {
         <ArticleCard />
       </main>
       <aside className='col-span-3 mb-8 min-w-full'>
-        <div className='bg-my-dark-blue p-6 rounded-3xl'>
+        <div className='bg-my-card-blue p-6 rounded-3xl'>
           <section className='text-center'>
             <Image
               src={authorIcon}
