@@ -64,7 +64,7 @@ jobs:
       - name: Run rubocop
         run: bundle exec rubocop
 
-  eslint:
+  code_analyze:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -75,6 +75,9 @@ jobs:
 
       - name: Install packages
         run: yarn
+
+      - name: Run Prettier
+        run: yarn format
 
       - name: Run eslint
         run: yarn lint
