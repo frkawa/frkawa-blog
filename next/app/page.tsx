@@ -42,13 +42,13 @@ export default function Home() {
               </Link>
             </div>
           </section>
-          <h2 className='text-xl font-bold mb-2'>ARCHIVES</h2>
+          <h3 className='text-xl font-bold mb-2'>ARCHIVES</h3>
           <ul className='list-disc pl-4'>
             <li>2024年1月</li>
             <li>2023月12月</li>
             <li>2023年11月</li>
           </ul>
-          <h2 className='text-xl font-bold mb-2 mt-7'>TAGS</h2>
+          <h3 className='text-xl font-bold mb-3 mt-7'>TAGS</h3>
           <TagCards />
         </div>
       </aside>
