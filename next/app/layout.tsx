@@ -14,8 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ja'>
-      <body className='bg-my-dark text-white font-body'>
-        <div className='grid grid-cols-10 mx-auto max-w-7xl px-40'>
+      <body className='bg-my-dark font-body text-white'>
+        <div className='mx-auto grid max-w-7xl grid-cols-10 px-40'>
           <Header />
           {children}
         </div>

@@ -15,7 +15,7 @@ export default function Home() {
         <ArticleCard />
       </main>
       <aside className='col-span-3 mb-8 min-w-full'>
-        <div className='bg-my-card-blue p-6 rounded-3xl'>
+        <div className='rounded-3xl bg-my-card-blue p-6'>
           <section className='text-center'>
             <Image
               src={authorIcon}
@@ -25,7 +25,7 @@ export default function Home() {
               className='mx-auto mb-3'
             />
             <div className='mb-1'>AUTHOR: frkawa</div>
-            <div className='flex gap-1 justify-center mb-8'>
+            <div className='mb-8 flex justify-center gap-1'>
               <Link
                 href='https://github.com/frkawa'
                 rel='noopener noreferrer'
@@ -42,13 +42,13 @@ export default function Home() {
               </Link>
             </div>
           </section>
-          <h3 className='text-xl font-bold mb-2'>ARCHIVES</h3>
+          <h3 className='mb-2 text-xl font-bold'>ARCHIVES</h3>
           <ul className='list-disc pl-4'>
             <li>2024年1月</li>
             <li>2023月12月</li>
             <li>2023年11月</li>
           </ul>
-          <h3 className='text-xl font-bold mb-3 mt-7'>TAGS</h3>
+          <h3 className='mb-3 mt-7 text-xl font-bold'>TAGS</h3>
           <TagCards />
         </div>
       </aside>
