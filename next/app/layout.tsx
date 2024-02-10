@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Header from './(components)/Header'
 import './globals.css'
+import SideBar from './(components)/SideBar'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -18,6 +19,7 @@ export default function RootLayout({
         <div className='mx-auto grid max-w-7xl grid-cols-10 px-40'>
           <Header />
           {children}
+          <SideBar />
         </div>
       </body>
     </html>
