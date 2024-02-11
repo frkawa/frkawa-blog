@@ -1,6 +1,6 @@
-import ArticleCard from './ArticleCard'
+import ArticleCard from '@components/ArticleCard'
 
-const ArticleCards = () => {
+const ArticleList = () => {
   return (
     <main className='col-span-7 mr-5'>
       <ArticleCard />
@@ -10,4 +10,4 @@ const ArticleCards = () => {
   )
 }
 
-export default ArticleCards
+export default ArticleList
