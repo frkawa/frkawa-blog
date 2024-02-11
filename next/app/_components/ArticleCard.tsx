@@ -1,6 +1,7 @@
-import TagCards from '@components/TagCards'
 import { faArrowsRotate, faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import TagCards from '@components/TagCards'
 
 const ArticleCard = () => {
   return (

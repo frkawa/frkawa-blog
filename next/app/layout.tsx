@@ -1,5 +1,6 @@
 import Header from '@components/Header'
 import SideBar from '@components/SideBar'
+
 import type { Metadata } from 'next'
 import './globals.css'
 

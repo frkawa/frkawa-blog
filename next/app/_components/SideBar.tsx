@@ -2,7 +2,9 @@ import { faGithub, faXTwitter } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Image from 'next/image'
 import Link from 'next/link'
+
 import TagCards from '@components/TagCards'
+
 import authorIcon from '/public/author_icon.png'
 
 const SideBar = () => {

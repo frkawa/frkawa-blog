@@ -13,12 +13,36 @@
   ],
   "rules": {
     "react/react-in-jsx-scope": "off",
-    "import/order": [2, { "alphabetize": { "order": "asc" } }],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "@/**",
+            "group": "parent",
+            "position": "before"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": [
+          "builtin",
+          "external",
+          "object",
+          "type"
+        ],
+        "newlines-between": "always",
+        "alphabetize": { "order": "asc" }
+      }
+    ],
     "import/no-unresolved": "off"
-  },
-  "settings": {
-    "tailwindcss": {
-      "config": "./next/tailwind.config.ts"
-    }
   }
 }
