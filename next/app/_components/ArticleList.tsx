@@ -1,11 +1,17 @@
 import ArticleCard from '@components/ArticleCard'
 
-const ArticleList = () => {
+import { Article } from '@/types'
+
+type ArticleListProps = {
+  articles: Article[]
+}
+
+const ArticleList = ({ articles }: ArticleListProps) => {
   return (
     <main className='col-span-7 mr-5'>
-      <ArticleCard />
-      <ArticleCard />
-      <ArticleCard />
+      {articles.map((article) => (
+        <ArticleCard key={article.id} article={article} />
+      ))}
     </main>
   )
 }
