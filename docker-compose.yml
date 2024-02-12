@@ -27,6 +27,8 @@ services:
       - db
     tty: true
     stdin_open: true
+    networks:
+      - frkawa-blog_default
   next:
     build:
       dockerfile: ./next/Dockerfile
@@ -36,6 +38,11 @@ services:
       - ./next:/app
     ports:
       - "8000:3000"
+    networks:
+      - frkawa-blog_default
 volumes:
   mysql_data:
   gem_data:
+networks:
+  frkawa-blog_default:
+    external: true
