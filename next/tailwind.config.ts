@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         'my-dark': '#161e26',
         'my-card-blue': '#252c32',
+        'my-card-blue-hover': '#2f373d',
         'my-light-blue': '#b9d8ef',
         'my-emphasis-sky': '#00ffee',
       },
