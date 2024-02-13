@@ -8,4 +8,6 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :status, presence: true, inclusion: { in: self.status.values }
+
+  scope :published, -> { where(status: :published) }
 end

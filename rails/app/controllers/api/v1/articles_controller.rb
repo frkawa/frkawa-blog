@@ -2,12 +2,12 @@ class Api::V1::ArticlesController < Api::V1::BaseController
   before_action :authenticate_user!, only: [:create]
 
   def index
-    articles = Article.all.order(created_at: :desc)
+    articles = Article.published.order(created_at: :desc)
     render json: ArticleSerializer.new(articles)
   end
 
   def show
-    article = Article.find_by(id: params[:id])
+    article = Article.published.find_by(id: params[:id])
     if article
       render json: ArticleSerializer.new(article)
     else
