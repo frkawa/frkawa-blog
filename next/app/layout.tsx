@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className='bg-my-dark font-body text-white'>
         <div className='mx-auto grid max-w-7xl grid-cols-10 px-40'>
           <Header />
-          {children}
+          <main className='col-span-7 mr-5'>{children}</main>
           <SideBar />
         </div>
       </body>
