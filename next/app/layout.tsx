@@ -1,7 +1,9 @@
+import Footer from '@components/Footer'
 import Header from '@components/Header'
 import SideBar from '@components/SideBar'
 
 import type { Metadata } from 'next'
+
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -17,10 +19,15 @@ export default function RootLayout({
   return (
     <html lang='ja'>
       <body className='bg-my-dark font-body text-white'>
-        <div className='mx-auto grid max-w-7xl grid-cols-10 px-40'>
+        <div className='container mx-auto flex min-h-screen max-w-6xl flex-col px-8'>
           <Header />
-          <main className='col-span-7 mr-5'>{children}</main>
-          <SideBar />
+          <div className='grow md:flex'>
+            <main className='col-span-7 mr-5 w-full md:w-2/3'>{children}</main>
+            <aside className='mb-8 w-full min-w-72 md:w-1/3'>
+              <SideBar />
+            </aside>
+          </div>
+          <Footer />
         </div>
       </body>
     </html>
