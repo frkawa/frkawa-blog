@@ -39,6 +39,11 @@ GET http://localhost:3000/api/v1/articles
 
 ###
 
+## 記事取得
+GET http://localhost:3000/api/v1/articles/10
+
+###
+
 ## 記事作成
 POST http://localhost:3000/api/v1/articles
 Content-Type: application/json
