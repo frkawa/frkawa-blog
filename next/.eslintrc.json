@@ -44,5 +44,10 @@
       }
     ],
     "import/no-unresolved": "off"
+  },
+  "settings": {
+    "tailwindcss": {
+      "whitelist": ["my-.+"]
+    }
   }
 }

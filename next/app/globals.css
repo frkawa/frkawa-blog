@@ -4,3 +4,104 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.py-05 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.my-markdown {
+  @apply leading-normal break-words;
+}
+
+.my-markdown > * + * {
+  @apply mt-0 mb-4;
+}
+
+.my-markdown li + li {
+  @apply mt-1;
+}
+
+.my-markdown li > p + p {
+  @apply mt-6;
+}
+
+.my-markdown strong {
+  @apply font-semibold;
+}
+
+.my-markdown a {
+  @apply text-sky-400 hover:underline;
+}
+
+.my-markdown strong a {
+  @apply font-bold;
+}
+
+.my-markdown h1 {
+  @apply leading-tight border-b border-gray-600 text-4xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.my-markdown h2 {
+  @apply leading-tight border-b border-gray-600 text-2xl font-semibold mb-4 mt-6 pb-2;
+}
+
+.my-markdown h3 {
+  @apply leading-snug text-lg font-semibold mb-4 mt-6;
+}
+
+.my-markdown h4 {
+  @apply leading-none text-base font-semibold mb-4 mt-6;
+}
+
+.my-markdown h5 {
+  @apply leading-tight text-sm font-semibold mb-4 mt-6;
+}
+
+.my-markdown h6 {
+  @apply leading-tight text-sm font-semibold text-gray-600 mb-4 mt-6;
+}
+
+.my-markdown blockquote {
+  @apply text-base border-l-4 border-gray-300 pl-4 pr-4 text-gray-400;
+}
+
+.my-markdown p > code {
+  @apply text-sm mx-1 px-0.5 py-0.5 bg-gray-600 rounded-sm;
+}
+
+.my-markdown pre {
+  @apply mb-3 text-sm rounded-lg !bg-my-dark;
+}
+
+.my-markdown pre > code {
+  @apply block p-4;
+}
+
+.my-markdown ul {
+  @apply text-base pl-7 list-disc;
+}
+
+.my-markdown ol {
+  @apply text-base pl-7 list-decimal;
+}
+
+.my-markdown kbd {
+  @apply text-xs inline-block rounded border px-1 py-05 align-middle font-normal shadow;
+}
+
+.my-markdown table {
+  @apply text-base border-gray-600;
+}
+
+.my-markdown th {
+  @apply border py-1 px-3;
+}
+
+.my-markdown td {
+  @apply border py-1 px-3;
+}
+
+.my-markdown hr {
+  @apply bg-gray-600 border-none h-px;
+}

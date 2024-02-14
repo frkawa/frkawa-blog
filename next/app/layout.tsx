@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang='ja'>
       <body className='bg-my-dark font-body text-white'>
-        <div className='container mx-auto flex min-h-screen max-w-6xl flex-col px-8'>
+        <div className='container mx-auto flex min-h-screen max-w-7xl flex-col px-8'>
           <Header />
           <div className='grow md:flex'>
             <main className='col-span-7 mr-5 w-full md:w-2/3'>{children}</main>

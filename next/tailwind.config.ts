@@ -18,7 +18,6 @@ const config: Config = {
     },
     fontFamily: {
       body: [
-        'Zen Maru Gothic',
         'Helvetica Neue',
         '游ゴシック',
         'Yu Gothic',
