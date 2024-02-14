@@ -91,11 +91,11 @@
 }
 
 .my-markdown table {
-  @apply text-base border-gray-600;
+  @apply text-base;
 }
 
 .my-markdown th {
-  @apply border py-1 px-3;
+  @apply border py-1 px-3 bg-my-dark;
 }
 
 .my-markdown td {
@@ -104,4 +104,12 @@
 
 .my-markdown hr {
   @apply bg-gray-600 border-none h-px;
+}
+
+.my-markdown .sr-only {
+  @apply hidden;
+}
+
+.my-markdown .footnotes {
+  @apply border-t border-gray-600 mt-16 pt-6;
 }

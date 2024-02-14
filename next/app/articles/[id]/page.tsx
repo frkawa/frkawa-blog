@@ -2,9 +2,9 @@ import { faArrowsRotate, faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import { qtcreatorDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/default-highlight'
+import { qtcreatorDark } from 'react-syntax-highlighter/dist/esm/styles/hljs'
+import remarkGfm from 'remark-gfm'
 
 import { getArticleById } from '@/_lib/fetchData'
 
@@ -37,8 +37,8 @@ const Article = async ({ params }: { params: { id: string } }) => {
     return (
       <>
         {fileName && (
-          <div className='bg-my-dark !-mb-1 pt-2 rounded-t-lg'>
-            <span className=' bg-gray-600 p-1 ml-2 mt-3 rounded'>
+          <div className='!-mb-1 rounded-t-lg bg-my-dark pt-2'>
+            <span className=' ml-2 mt-3 rounded bg-gray-600 p-1'>
               {fileName}
             </span>
           </div>
