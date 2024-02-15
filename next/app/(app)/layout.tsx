@@ -4,7 +4,7 @@ import SideBar from '@components/SideBar'
 
 import type { Metadata } from 'next'
 
-import './globals.css'
+import '@/globals.css'
 
 export const metadata: Metadata = {
   title: 'frkawa.dev',

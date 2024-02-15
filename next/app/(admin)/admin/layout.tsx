@@ -1,3 +1,5 @@
+import '@/globals.css'
+
 export default function AdminLayout({
   children,
 }: Readonly<{
@@ -5,10 +7,7 @@ export default function AdminLayout({
 }>) {
   return (
     <html lang='ja'>
-      <body>
-        <div>Admin layout</div>
-        {children}
-      </body>
+      <body className='font-body'>{children}</body>
     </html>
   )
 }
