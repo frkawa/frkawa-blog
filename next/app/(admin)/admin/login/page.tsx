@@ -1,10 +1,35 @@
 'use client'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
+
+import { signIn } from '@/_lib/auth'
+import { SignInFormData } from '@/types'
 
 const AdminLogin = () => {
-  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const router = useRouter()
+
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log('submitted')
+
+    const requestData: SignInFormData = { email: email, password: password }
+
+    try {
+      const sessionItems = await signIn(requestData)
+
+      localStorage.setItem('uid', sessionItems.uid)
+      localStorage.setItem('access-token', sessionItems.accessToken)
+      localStorage.setItem('client', sessionItems.client)
+
+      router.push('/admin/articles')
+      router.refresh()
+    } catch (error) {
+      console.error(error)
+
+      router.push('/admin/login')
+      router.refresh()
+    }
   }
 
   return (
@@ -14,6 +39,7 @@ const AdminLogin = () => {
         <input
           type='text'
           className='mb-5 w-full border px-3 py-2 shadow focus:outline-none'
+          onChange={(e) => setEmail(e.target.value)}
         />
       </label>
       <label>
@@ -21,6 +47,7 @@ const AdminLogin = () => {
         <input
           type='password'
           className='mb-5 w-full border px-3 py-2 shadow focus:outline-none'
+          onChange={(e) => setPassword(e.target.value)}
         />
       </label>
       <button

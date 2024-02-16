@@ -6,3 +6,14 @@ export type Article = {
   published_at: string
   updated_at: string
 }
+
+export type SignInFormData = {
+  email: string
+  password: string
+}
+
+export type SessionItems = {
+  uid: string
+  accessToken: string
+  client: string
+}
