@@ -22,3 +22,19 @@ export const signIn = async (
 
   return { uid, accessToken, client }
 }
+
+export const signOut = async (sessionItems: SessionItems): Promise<void> => {
+  const headers = {
+    uid: sessionItems.uid,
+    'access-token': sessionItems.accessToken,
+    client: sessionItems.client,
+  }
+  const res = await fetch('http://localhost:3000/api/v1/auth/sign_out', {
+    headers: headers,
+    method: 'DELETE',
+  })
+
+  if (!res.ok) {
+    throw new Error('Failed to sign out.')
+  }
+}

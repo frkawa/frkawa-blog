@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import React from 'react'
 
+import SignOutButton from './SignOutButton'
+
 const Header = () => {
   return (
     <header className='flex justify-between bg-gray-900 px-10 py-6 text-white'>
@@ -10,9 +12,7 @@ const Header = () => {
         </div>
       </Link>
       <div>
-        <button className='w-full rounded bg-emerald-600 px-4 py-2 text-white transition hover:bg-emerald-500'>
-          サインアウト
-        </button>
+        <SignOutButton />
       </div>
     </header>
   )

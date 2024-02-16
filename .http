@@ -29,8 +29,8 @@ Content-Type: application/json
 ## サインアウト
 DELETE http://localhost:3000/api/v1/auth/sign_out
 uid: test1@example.com
-access-token: AwBrn3rs92HUOxh-sx-1Eg
-client: ncGXh1xAzZUpzY5kzK9rYQ
+access-token: zIl3umv8EwXYndthn7JKjA
+client: t6n8ySj25zgjzFdkkKiWYQ
 
 ###
 
