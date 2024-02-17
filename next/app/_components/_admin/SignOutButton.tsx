@@ -1,4 +1,6 @@
 'use client'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
@@ -35,6 +37,7 @@ const SignOutButton = () => {
       onClick={handleClick}
     >
       サインアウト
+      <FontAwesomeIcon icon={faRightFromBracket} className='ml-2 h-4' />
     </button>
   )
 }

@@ -1,3 +1,5 @@
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Link from 'next/link'
 import React from 'react'
 
@@ -46,7 +48,11 @@ const AdminArticles = async () => {
                   </td>
                   <td className='border border-gray-400 px-4 py-2'>
                     <Link href={`/admin/articles/${article.id}/edit`}>
-                      <button className='w-full rounded bg-emerald-600 px-3 py-2 text-sm text-white transition hover:bg-emerald-500'>
+                      <button className='w-full rounded bg-emerald-600 px-1 py-2 text-sm text-white transition hover:bg-emerald-500'>
+                        <FontAwesomeIcon
+                          icon={faPenToSquare}
+                          className='mr-2 h-4'
+                        />
                         編集
                       </button>
                     </Link>
