@@ -58,3 +58,44 @@ client: BqLY0lovW3IJ7B9AUpV43A
     "status": "draft"
   }
 }
+
+###
+
+## 記事一覧（管理画面）
+GET http://localhost:3000/api/v1/admin/articles
+uid: test1@example.com
+access-token: aZXhmk6xkWFF6aY_q-Rl3A
+client: Ko4CYoPLhi_RLgB7HQoLRg
+
+###
+
+## 記事取得（管理画面）
+GET http://localhost:3000/api/v1/admin/articles/100
+uid: test1@example.com
+access-token: aZXhmk6xkWFF6aY_q-Rl3A
+client: Ko4CYoPLhi_RLgB7HQoLRg
+
+###
+
+## 記事作成画面（管理画面）
+GET http://localhost:3000/api/v1/admin/articles/new
+uid: test1@example.com
+access-token: aZXhmk6xkWFF6aY_q-Rl3A
+client: Ko4CYoPLhi_RLgB7HQoLRg
+
+###
+
+## 記事更新（管理画面）
+PATCH http://localhost:3000/api/v1/admin/articles/1
+Content-Type: application/json
+uid: test1@example.com
+access-token: aZXhmk6xkWFF6aY_q-Rl3A
+client: Ko4CYoPLhi_RLgB7HQoLRg
+
+{
+  "article": {
+    "title": "aa",
+    "body": "更新テストです",
+    "status": "published"
+  }
+}

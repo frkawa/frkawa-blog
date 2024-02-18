@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       mount_devise_token_auth_for 'Admin::User', at: 'auth'
 
       resources :articles, only: %i[index show create update destroy]
+
+      namespace :admin do
+        resources :articles, only: %i[index new create show update]
+      end
     end
   end
 
