@@ -1,5 +1,5 @@
 class Admin::ArticleSerializer < BaseSerializer
-  attributes :id, :title
+  attributes :id, :title, :body
 
   attribute :status, &:status_text
 
