@@ -5,7 +5,7 @@ class Article < ApplicationRecord
 
   enumerize :status, in: %i[draft published archived], default: :draft, predicates: true
 
-  with_options if: -> { status.published? } do
+  with_options if: -> { status&.published? } do
     validates :title, presence: true
     validates :body, presence: true
   end

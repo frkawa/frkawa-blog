@@ -10,8 +10,16 @@ FactoryBot.define do
       status { Article.status.find_value(:published) }
     end
 
+    trait :not_published do
+      status { Article.status.values.without('published').sample }
+    end
+
     trait :draft do
       status { Article.status.find_value(:draft) }
+    end
+
+    trait :archived do
+      status { Article.status.find_value(:archived) }
     end
   end
 end
