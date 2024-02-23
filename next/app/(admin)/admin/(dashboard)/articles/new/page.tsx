@@ -1,7 +1,7 @@
 import React from 'react'
 
 const AdminArticlesNewPage = () => {
-  return <div>AdminArticlesNewPage</div>
+  return <div>ArticlesNewPage</div>
 }
 
 export default AdminArticlesNewPage
