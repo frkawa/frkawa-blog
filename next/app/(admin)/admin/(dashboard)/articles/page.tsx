@@ -1,12 +1,23 @@
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { cookies } from 'next/headers'
 import Link from 'next/link'
 import React from 'react'
 
-import { getAllArticles } from '@/_lib/fetchData'
+import { getAllArticlesForAdmin } from '@/_lib/fetchData'
+import { Article } from '@/types'
 
 const AdminArticles = async () => {
-  const articles = await getAllArticles()
+  let articles: Article[] = []
+  const token = cookies().get('token')?.value as string | undefined
+
+  if (token !== undefined) {
+    try {
+      articles = await getAllArticlesForAdmin(token)
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <div className='h-full bg-gray-200 p-5'>

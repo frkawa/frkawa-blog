@@ -63,3 +63,6 @@ Rails/UnknownEnv:
 
 Rails/WhereExists:
   Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false

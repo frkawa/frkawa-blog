@@ -16,11 +16,7 @@ const AdminLogin = () => {
     const requestData: SignInFormData = { email: email, password: password }
 
     try {
-      const sessionItems = await signIn(requestData)
-
-      localStorage.setItem('uid', sessionItems.uid)
-      localStorage.setItem('access-token', sessionItems.accessToken)
-      localStorage.setItem('client', sessionItems.client)
+      await signIn(requestData)
 
       router.push('/admin/articles')
       router.refresh()

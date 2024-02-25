@@ -43,6 +43,8 @@ module App
     config.i18n.default_locale = :ja
     config.time_zone = 'Tokyo'
 
+    config.action_dispatch.cookies_same_site_protection = :none
+
     # NOTE: api modeではそのままではsessionが使えないためmiddlewareを追加
     config.session_store :cookie_store, key: '_interslice_session'
     config.middleware.use ActionDispatch::Cookies

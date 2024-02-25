@@ -1,13 +1,12 @@
 import { SessionItems, SignInFormData } from '@/types'
 
-export const signIn = async (
-  formData: SignInFormData,
-): Promise<SessionItems> => {
+export const signIn = async (formData: SignInFormData): Promise<void> => {
   const headers = { 'Content-Type': 'application/json' }
   const res = await fetch('http://localhost:3000/api/v1/auth/sign_in', {
     headers: headers,
     method: 'POST',
     body: JSON.stringify(formData),
+    credentials: 'include',
   })
 
   if (res.status === 401) {
@@ -15,20 +14,16 @@ export const signIn = async (
   } else if (!res.ok) {
     throw new Error('Failed to sign in.')
   }
-
-  const uid = res.headers.get('uid') || ''
-  const accessToken = res.headers.get('access-token') || ''
-  const client = res.headers.get('client') || ''
-
-  return { uid, accessToken, client }
 }
 
-export const signOut = async (sessionItems: SessionItems): Promise<void> => {
+export const signOut = async (token: string): Promise<void> => {
+  const parsedToken = JSON.parse(token) as SessionItems
   const headers = {
-    uid: sessionItems.uid,
-    'access-token': sessionItems.accessToken,
-    client: sessionItems.client,
+    uid: parsedToken.uid,
+    'access-token': parsedToken.accessToken,
+    client: parsedToken.client,
   }
+
   const res = await fetch('http://localhost:3000/api/v1/auth/sign_out', {
     headers: headers,
     method: 'DELETE',

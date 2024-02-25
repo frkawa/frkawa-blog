@@ -5,26 +5,17 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 
 import { signOut } from '@/_lib/auth'
-import { SessionItems } from '@/types'
 
-const SignOutButton = () => {
+const SignOutButton = ({ token }: { token: string | null }) => {
   const router = useRouter()
 
   const handleClick = async () => {
-    const sessionItems: SessionItems = {
-      uid: localStorage.getItem('uid') || '',
-      accessToken: localStorage.getItem('access-token') || '',
-      client: localStorage.getItem('client') || '',
-    }
-
-    try {
-      await signOut(sessionItems)
-
-      localStorage.removeItem('uid')
-      localStorage.removeItem('access-token')
-      localStorage.removeItem('client')
-    } catch (error) {
-      alert('ログインしてないっすわ')
+    if (token !== null) {
+      try {
+        await signOut(token)
+      } catch (error) {
+        alert('ログインしてないっすわ')
+      }
     }
 
     router.push('/admin/login')
