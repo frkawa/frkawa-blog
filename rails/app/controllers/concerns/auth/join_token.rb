@@ -16,10 +16,8 @@ module Auth::JoinToken
         value: auth_headers_data,
         httponly: true,
         expires: 30.days,
-        secure: true,
+        secure: !Rails.env.test?,
       }
-
-      response.headers.delete_if {|key| auth_headers_data.include?(key) }
     end
 
     def auth_headers_data

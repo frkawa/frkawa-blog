@@ -6,11 +6,10 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
       create(:article, :published)
       create(:article, :draft)
       create(:article, :archived)
-      get api_v1_admin_articles_path, headers: auth_tokens
     end
 
     context 'サインインしていない時' do
-      let(:auth_tokens) { nil }
+      before { get api_v1_admin_articles_path }
 
       it '401ステータスが返ること' do
         expect(response).to have_http_status(:unauthorized)
@@ -19,6 +18,7 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
 
     context 'サインインしている時' do
       include_context '管理画面にサインイン'
+      before { get api_v1_admin_articles_path, headers: auth_tokens }
 
       it '200ステータスが返ること' do
         expect(response).to have_http_status(:ok)
@@ -34,7 +34,7 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
     let(:article) { create(:article) }
 
     context 'サインインしていない時' do
-      before { get api_v1_admin_article_path(article), headers: nil }
+      before { get api_v1_admin_article_path(article) }
 
       it '401ステータスが返ること' do
         expect(response).to have_http_status(:unauthorized)
@@ -69,7 +69,7 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
   describe '記事作成画面 GET /api/v1/admin/articles/new' do
     # NOTE: GETリクエストだが、記事編集画面でリアルタイム編集ができるようにnewの時点で下書き記事を作成している
     context 'サインインしていない時' do
-      before { get new_api_v1_admin_article_path, headers: nil }
+      before { get new_api_v1_admin_article_path }
 
       it '401ステータスが返ること' do
         expect(response).to have_http_status(:unauthorized)
@@ -114,7 +114,7 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
     let(:update_params) { { article: { title: 'update title', body: 'update body' } } }
 
     context 'サインインしていない時' do
-      before { patch api_v1_admin_article_path(article), headers: nil, params: update_params }
+      before { patch api_v1_admin_article_path(article), params: update_params }
 
       it '401ステータスが返ること' do
         expect(response).to have_http_status(:unauthorized)

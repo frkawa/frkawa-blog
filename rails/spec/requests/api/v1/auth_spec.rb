@@ -13,6 +13,16 @@ RSpec.describe 'Api::V1::Auth', type: :request do
         subject
         expect(response).to have_http_status(:ok)
       end
+
+      it 'Cookieが設定されること' do
+        subject
+        expect(JSON.parse(cookies['token'])['accessToken']).to eq response.headers['access-token']
+        expect(JSON.parse(cookies['token'])['client']).to eq response.headers['client']
+        expect(JSON.parse(cookies['token'])['uid']).to eq response.headers['uid']
+        expect(cookies.get_cookie('token')).to be_http_only
+        expect(cookies.get_cookie('token').expires.to_date).to eq Date.current + 30.days
+        expect(cookies.get_cookie('token')).not_to be_secure
+      end
     end
 
     context 'サインイン情報が誤っている時' do
