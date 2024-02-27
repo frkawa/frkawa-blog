@@ -119,7 +119,7 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
 
   describe '記事更新 PATCH /api/v1/admin/articles/[:id]' do
     let(:article) { create(:article) }
-    let(:update_params) { { article: { title: 'update title', body: 'update body' } } }
+    let(:update_params) { { article: { url: 'update-url', title: 'update title', body: 'update body' } } }
 
     context 'サインインしていない時' do
       before { patch api_v1_admin_article_path(article), params: update_params }
@@ -149,18 +149,20 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
           end
 
           it '記事が更新されること' do
+            expect(article.reload.url).to eq 'update-url'
             expect(article.reload.title).to eq 'update title'
             expect(article.reload.body).to eq 'update body'
           end
 
           it '更新された記事が取得できること' do
+            expect(JSON.parse(response.body)['url']).to eq 'update-url'
             expect(JSON.parse(response.body)['title']).to eq 'update title'
             expect(JSON.parse(response.body)['body']).to eq 'update body'
           end
         end
 
         context '更新内容に問題がある場合' do
-          let(:update_params) { { article: { title: '', body: '', status: 'published' } } }
+          let(:update_params) { { article: { url: '', title: '', body: '', status: 'published' } } }
 
           before { patch api_v1_admin_article_path(article), headers: auth_tokens, params: update_params }
 
@@ -169,11 +171,13 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
           end
 
           it '記事が更新されないこと' do
+            expect(article.reload.url).to eq article.url
             expect(article.reload.title).to eq article.title
             expect(article.reload.body).to eq article.body
           end
 
           it 'エラーメッセージが返ること' do
+            expect(JSON.parse(response.body)['url']).to include 'を入力してください'
             expect(JSON.parse(response.body)['title']).to include 'を入力してください'
             expect(JSON.parse(response.body)['body']).to include 'を入力してください'
           end

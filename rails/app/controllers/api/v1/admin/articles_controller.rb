@@ -34,6 +34,6 @@ class Api::V1::Admin::ArticlesController < Api::V1::Admin::BaseController
   private
 
     def article_params
-      params.require(:article).permit(:title, :body, :status, :published_at)
+      params.require(:article).permit(:url, :title, :body, :status, :published_at)
     end
 end

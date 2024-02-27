@@ -5,11 +5,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
-    article = Article.published.find_by(id: params[:id])
-    if article
-      render json: ArticleSerializer.new(article)
-    else
-      render json: { error: 'Article not found.' }, status: :not_found
-    end
+    article = Article.published.find_by!(id: params[:id])
+    render json: ArticleSerializer.new(article)
   end
 end
