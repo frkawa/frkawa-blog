@@ -12,18 +12,32 @@ RSpec.describe Article, type: :model do
   end
 
   describe 'custom validations' do
-    context 'statusがpublishedの場合' do
-      subject { build(:article, :published) }
+    describe 'title, body' do
+      context 'statusがpublishedの場合' do
+        subject { build(:article, :published) }
 
-      it { is_expected.to validate_presence_of(:title) }
-      it { is_expected.to validate_presence_of(:body) }
+        it { is_expected.to validate_presence_of(:title) }
+        it { is_expected.to validate_presence_of(:body) }
+      end
+
+      context 'statusがpublished以外の場合' do
+        subject { build(:article, :not_published) }
+
+        it { is_expected.not_to validate_presence_of(:title) }
+        it { is_expected.not_to validate_presence_of(:body) }
+      end
     end
 
-    context 'statusがpublished以外の場合' do
-      subject { build(:article, :not_published) }
+    describe 'url' do
+      it { is_expected.to allow_value('abCD-0123_').for(:url) }
+      it { is_expected.not_to allow_value('あいうえお').for(:url) }
+      it { is_expected.not_to allow_value('aa bb').for(:url) }
 
-      it { is_expected.not_to validate_presence_of(:title) }
-      it { is_expected.not_to validate_presence_of(:body) }
+      describe 'uniqueness' do
+        before { create(:article, url: 'test') }
+
+        it { expect(build(:article, url: 'test')).not_to be_valid }
+      end
     end
   end
 

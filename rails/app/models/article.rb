@@ -10,7 +10,8 @@ class Article < ApplicationRecord
     validates :body, presence: true
   end
 
-  validates :url, presence: true, uniqueness: true
+  # NOTE: URLは半角英数またはハイフン、アンダースコアのみを許可
+  validates :url, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9-_]+\z/ }
   validates :status, presence: true, inclusion: { in: self.status.values }
 
   scope :published, -> { where(status: :published) }
