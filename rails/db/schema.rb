@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_24_140745) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_27_114004) do
   create_table "admin_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", comment: "管理者ユーザー", force: :cascade do |t|
     t.string "provider", default: "email", null: false, comment: "認証プロバイダー"
     t.string "uid", default: "", null: false, comment: "UID"
@@ -24,13 +24,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_24_140745) do
 
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", comment: "記事", force: :cascade do |t|
     t.bigint "admin_user_id", comment: "管理者ユーザーID"
-    t.string "title", null: false, comment: "タイトル"
+    t.string "url", null: false, comment: "URL"
+    t.string "title", default: "", null: false, comment: "タイトル"
     t.text "body", null: false, comment: "本文"
     t.string "status", null: false, comment: "ステータス"
     t.datetime "published_at", comment: "公開日時"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["admin_user_id"], name: "index_articles_on_admin_user_id"
+    t.index ["url"], name: "index_articles_on_url", unique: true
   end
 
   add_foreign_key "articles", "admin_users"
