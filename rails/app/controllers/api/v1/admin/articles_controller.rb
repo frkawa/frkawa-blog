@@ -1,4 +1,4 @@
-class Api::V1::Admin::ArticlesController < Api::V1::BaseController
+class Api::V1::Admin::ArticlesController < Api::V1::Admin::BaseController
   before_action :authenticate_user!
 
   def index
@@ -10,7 +10,7 @@ class Api::V1::Admin::ArticlesController < Api::V1::BaseController
     # NOTE: 記事編集画面でリアルタイム編集ができるようにnewの時点で下書き記事を作成する
     draft_article = Article.find_or_initialize_by(title: '', status: 'draft', body: '', user: current_user)
 
-    draft_article.url = Time.current.strftime('%Y%m%d%H%M%S') + '-article' if draft_article.new_record?
+    draft_article.url = "#{Time.current.strftime('%Y%m%d%H%M%S')}-article" if draft_article.new_record?
     draft_article.save!
 
     render json: Admin::ArticleSerializer.new(draft_article)

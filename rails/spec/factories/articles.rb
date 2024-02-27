@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :article do
     association :user, factory: :admin_user
-    sequence(:url) { |n| "article-#{n}" }
+    sequence(:url) {|n| "article-#{n}" }
     title { Faker::Book.title }
     body { Faker::Lorem.paragraphs.join("\n") }
     status { Article.status.values.sample }
