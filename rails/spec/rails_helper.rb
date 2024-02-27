@@ -68,9 +68,11 @@ RSpec.configure do |config|
   config.include AuthorizationSpecHelper, type: :request
 
   Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-    with.test_framework :rspec
-    with.library :rails
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
   end
-end
+
+  config.include ActiveSupport::Testing::TimeHelpers
 end

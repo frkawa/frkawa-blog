@@ -80,7 +80,7 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
       include_context '管理画面にサインイン'
 
       context '未入力の下書き記事が存在する場合' do
-        let!(:new_draft_article) { create(:article, :draft, user:, title: '', body: '') }
+        let!(:existing_draft_article) { create(:article, :draft, user:, title: '', body: '') }
 
         before { get new_api_v1_admin_article_path, headers: auth_tokens }
 
@@ -89,18 +89,26 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
         end
 
         it '既に存在する未入力の下書き記事が取得できること' do
-          expect(JSON.parse(response.body)['id']).to eq new_draft_article.id
+          expect(JSON.parse(response.body)['id']).to eq existing_draft_article.id
+        end
+
+        it '記事のURLが更新されていないこと' do
+          expect(JSON.parse(response.body)['url']).to eq existing_draft_article.url
         end
       end
 
       context '未入力の下書き記事が存在しない場合' do
-        before { get new_api_v1_admin_article_path, headers: auth_tokens }
+        before do
+          travel_to '2024-02-27 12:34:56'
+          get new_api_v1_admin_article_path, headers: auth_tokens
+        end
 
         it '200ステータスが返ること' do
           expect(response).to have_http_status(:ok)
         end
 
         it '新たに作成された未入力の下書き記事が取得できること' do
+          expect(JSON.parse(response.body)['url']).to eq '20240227123456-article'
           expect(JSON.parse(response.body)['title']).to eq ''
           expect(JSON.parse(response.body)['body']).to eq ''
           expect(JSON.parse(response.body)['status']).to eq '下書き'

@@ -6,6 +6,7 @@ RSpec.describe Article, type: :model do
   end
 
   describe 'validations' do
+    it { is_expected.to validate_presence_of(:url) }
     it { is_expected.to validate_presence_of(:status) }
     it { is_expected.to enumerize(:status).in(:draft, :published, :archived).with_default(:draft) }
   end
