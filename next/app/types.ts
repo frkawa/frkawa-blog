@@ -17,3 +17,10 @@ export type SessionItems = {
   accessToken: string
   client: string
 }
+
+export type ArticleFormData = {
+  url: string
+  title: string
+  body: string
+  status: string
+}
