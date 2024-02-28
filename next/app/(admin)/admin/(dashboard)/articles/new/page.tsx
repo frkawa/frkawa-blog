@@ -1,8 +1,30 @@
+import { cookies } from 'next/headers'
 import React from 'react'
 
 import ArticleForm from '@/_components/_admin/ArticleForm'
+import { initializeNewArticle } from '@/_lib/fetchData'
+import { Article } from '@/types'
 
-const AdminArticlesNewPage = () => {
+const AdminArticlesNewPage = async () => {
+  let newArticle: Article = {
+    id: '',
+    url: '',
+    title: '',
+    body: '',
+    status: '',
+    published_at: '',
+    updated_at: '',
+  }
+  // TODO: トークンセットとエラーハンドリングの共通化
+  const token = cookies().get('token')?.value as string | undefined
+  if (token !== undefined) {
+    try {
+      newArticle = await initializeNewArticle(token)
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div className='h-full bg-gray-200 p-5'>
       <div className='leading-8'>
@@ -11,10 +33,10 @@ const AdminArticlesNewPage = () => {
         </h2>
         <ArticleForm
           articleFormData={{
-            url: '',
-            title: '',
-            body: '',
-            status: '',
+            url: newArticle.url,
+            title: newArticle.title,
+            body: newArticle.body,
+            status: newArticle.status,
           }}
         />
       </div>
