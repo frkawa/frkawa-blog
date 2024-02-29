@@ -77,6 +77,30 @@ export const initializeNewArticle = async (token: string): Promise<Article> => {
   return article
 }
 
+export const getArticleByIdForAdmin = async (
+  token: string,
+  id: string,
+): Promise<Article> => {
+  const parsedToken = JSON.parse(token) as SessionItems
+  const headers = {
+    uid: parsedToken.uid,
+    'access-token': parsedToken.accessToken,
+    client: parsedToken.client,
+  }
+
+  const res = await fetch(`http://rails:3000/api/v1/admin/articles/${id}`, {
+    headers: headers,
+    cache: 'no-store',
+  })
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch the article.')
+  }
+
+  const article = await res.json()
+  return article
+}
+
 export const updateArticle = async (
   token: string,
   articleFormData: ArticleFormData,

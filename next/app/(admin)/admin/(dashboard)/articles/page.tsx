@@ -62,9 +62,8 @@ const AdminArticles = async () => {
                       <button className='w-full rounded bg-emerald-600 px-1 py-2 text-sm text-white transition hover:bg-emerald-500'>
                         <FontAwesomeIcon
                           icon={faPenToSquare}
-                          className='mr-2 h-4'
+                          className='mx-1 h-4'
                         />
-                        編集
                       </button>
                     </Link>
                   </td>
