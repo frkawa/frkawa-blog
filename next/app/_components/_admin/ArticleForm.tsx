@@ -2,11 +2,14 @@
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
+import { updateArticle } from '@/_lib/fetchData'
 import { ArticleFormData } from '@/types'
 
 const ArticleForm = ({
+  token,
   articleFormData,
 }: {
+  token: string
   articleFormData: ArticleFormData
 }) => {
   const articleStatuses = [
@@ -19,12 +22,15 @@ const ArticleForm = ({
     handleSubmit,
     formState: { errors },
   } = useForm<ArticleFormData>()
-  const onSubmit: SubmitHandler<ArticleFormData> = (data) => {
+  const onSubmit: SubmitHandler<ArticleFormData> = async (data) => {
     console.log(data)
+    const updatedArticle = await updateArticle(token, data)
+    console.log(updatedArticle)
   }
 
   return (
     <form className='flex flex-col' onSubmit={handleSubmit(onSubmit)}>
+      <input type='hidden' value={articleFormData.id} {...register('id')} />
       <label className='mb-6'>
         <h3 className='mb-1 font-bold'>記事URL</h3>
         <input

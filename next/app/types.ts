@@ -20,6 +20,7 @@ export type SessionItems = {
 }
 
 export type ArticleFormData = {
+  id: string
   url: string
   title: string
   body: string

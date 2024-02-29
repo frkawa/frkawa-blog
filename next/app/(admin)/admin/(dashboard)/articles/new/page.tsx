@@ -16,13 +16,11 @@ const AdminArticlesNewPage = async () => {
     updated_at: '',
   }
   // TODO: トークンセットとエラーハンドリングの共通化
-  const token = cookies().get('token')?.value as string | undefined
-  if (token !== undefined) {
-    try {
-      newArticle = await initializeNewArticle(token)
-    } catch (error) {
-      console.error(error)
-    }
+  const token = cookies().get('token')?.value ?? ''
+  try {
+    newArticle = await initializeNewArticle(token)
+  } catch (error) {
+    console.error(error)
   }
 
   return (
@@ -32,7 +30,9 @@ const AdminArticlesNewPage = async () => {
           記事新規投稿
         </h2>
         <ArticleForm
+          token={token}
           articleFormData={{
+            id: newArticle.id,
             url: newArticle.url,
             title: newArticle.title,
             body: newArticle.body,
