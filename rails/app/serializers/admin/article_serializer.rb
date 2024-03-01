@@ -1,7 +1,5 @@
 class Admin::ArticleSerializer < BaseSerializer
-  attributes :id, :url, :title, :body
-
-  attribute :status, &:status_text
+  attributes :id, :url, :title, :body, :status
 
   attribute :published_at do |resource|
     resource.published_at&.strftime('%Y年%-m月%-d日 %R')

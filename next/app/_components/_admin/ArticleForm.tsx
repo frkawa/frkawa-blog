@@ -3,6 +3,7 @@ import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
 import { updateArticle } from '@/_lib/fetchData'
+import { articleStatuses } from '@/_lib/i18n'
 import { ArticleFormData } from '@/types'
 
 const ArticleForm = ({
@@ -12,16 +13,11 @@ const ArticleForm = ({
   token: string
   articleFormData: ArticleFormData
 }) => {
-  const articleStatuses = [
-    { code: 'draft', name: '下書き' },
-    { code: 'published', name: '公開' },
-    { code: 'archived', name: 'アーカイブ' },
-  ]
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ArticleFormData>()
+  } = useForm<ArticleFormData>({ defaultValues: articleFormData })
   const onSubmit: SubmitHandler<ArticleFormData> = async (data) => {
     console.log(data)
     const updatedArticle = await updateArticle(token, data)
@@ -35,7 +31,6 @@ const ArticleForm = ({
         <h3 className='mb-1 font-bold'>記事URL</h3>
         <input
           className='w-3/4 border px-3 py-2 shadow focus:outline-none'
-          defaultValue={articleFormData.url}
           {...register('url', { required: '記事のURLを入力してください' })}
         />
         {errors.url && (
@@ -47,7 +42,6 @@ const ArticleForm = ({
         <h3 className='mb-1 font-bold'>記事タイトル</h3>
         <input
           className='w-3/4 border px-3 py-2 shadow focus:outline-none'
-          defaultValue={articleFormData.title}
           {...register('title', {
             required: '記事のタイトルを入力してください',
           })}
@@ -62,7 +56,6 @@ const ArticleForm = ({
         <textarea
           rows={10}
           className='w-full border px-3 py-2 leading-6 shadow focus:outline-none'
-          defaultValue={articleFormData.body}
           {...register('body', {
             required: '記事本文を入力してください',
           })}
@@ -76,7 +69,6 @@ const ArticleForm = ({
         <h3 className='mb-1 font-bold'>ステータス</h3>
         <select
           className='mr-2 border px-3 py-2 shadow focus:outline-none'
-          value={articleFormData.status}
           {...register('status')}
         >
           {articleStatuses.map((status) => {

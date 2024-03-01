@@ -111,7 +111,7 @@ RSpec.describe 'Api::V1::Admin::Article', type: :request do
           expect(JSON.parse(response.body)['url']).to eq '20240227123456-article'
           expect(JSON.parse(response.body)['title']).to eq ''
           expect(JSON.parse(response.body)['body']).to eq ''
-          expect(JSON.parse(response.body)['status']).to eq '下書き'
+          expect(JSON.parse(response.body)['status']).to eq 'draft'
         end
       end
     end

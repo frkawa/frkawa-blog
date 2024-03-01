@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { getAllArticlesForAdmin } from '@/_lib/fetchData'
+import { articleStatuses } from '@/_lib/i18n'
 import { Article } from '@/types'
 
 const AdminArticles = async () => {
@@ -49,7 +50,11 @@ const AdminArticles = async () => {
                       : article.title}
                   </td>
                   <td className='border border-gray-400 px-4 py-2 text-center'>
-                    {article.status}
+                    {
+                      articleStatuses.find(
+                        (status) => status.code === article.status,
+                      )?.name
+                    }
                   </td>
                   <td className='border border-gray-400 px-4 py-2 text-center'>
                     {article.published_at}
