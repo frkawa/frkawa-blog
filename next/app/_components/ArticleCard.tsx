@@ -10,7 +10,7 @@ type ArticleCardProps = {
 
 const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
-    <Link href={`/articles/${article.id}`}>
+    <Link href={`/articles/${article.url}`}>
       <article className='mb-6 rounded-3xl bg-my-card-blue p-6 transition hover:bg-my-card-blue-hover'>
         <div className='flex gap-7'>
           <span className='flex gap-2 leading-4'>

@@ -18,12 +18,12 @@ RSpec.describe 'Api::V1::Article', type: :request do
     end
   end
 
-  describe '記事取得 GET /api/v1/articles/[:id]' do
+  describe '記事取得 GET /api/v1/articles/[:url]' do
     let(:published_article) { create(:article, :published) }
     let(:draft_article) { create(:article, :draft) }
 
     context '公開済みの記事の場合' do
-      before { get api_v1_article_path(published_article) }
+      before { get api_v1_article_path(published_article.url) }
 
       it '200ステータスが返ること' do
         expect(response).to have_http_status(:ok)
@@ -35,7 +35,7 @@ RSpec.describe 'Api::V1::Article', type: :request do
     end
 
     context '下書きの記事の場合' do
-      before { get api_v1_article_path(draft_article) }
+      before { get api_v1_article_path(draft_article.url) }
 
       it '404ステータスが返ること' do
         expect(response).to have_http_status(:not_found)

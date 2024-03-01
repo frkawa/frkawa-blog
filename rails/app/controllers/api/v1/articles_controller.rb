@@ -5,7 +5,7 @@ class Api::V1::ArticlesController < ApplicationController
   end
 
   def show
-    article = Article.published.find_by!(id: params[:id])
+    article = Article.published.find_by!(url: params[:url])
     render json: ArticleSerializer.new(article)
   end
 end
