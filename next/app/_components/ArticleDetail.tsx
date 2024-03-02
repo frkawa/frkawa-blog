@@ -15,8 +15,9 @@ const ArticleDetail = ({ article }: { article: Article }) => {
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className='mb-6 md:mb-0'
     >
-      <article className='rounded-3xl bg-my-card-blue p-6'>
+      <article className='rounded-3xl bg-my-card-blue p-10'>
         <h1 className='text-4xl'>{article.title}</h1>
         <div className='my-10 flex justify-center gap-7'>
           <span className='flex gap-2 leading-4'>
