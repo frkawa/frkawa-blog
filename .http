@@ -44,23 +44,6 @@ GET http://localhost:3000/api/v1/articles/10
 
 ###
 
-## 記事作成
-POST http://localhost:3000/api/v1/articles
-Content-Type: application/json
-uid: test1@example.com
-access-token: q0x1Nh8JUBZPFovWcb7ePA
-client: BqLY0lovW3IJ7B9AUpV43A
-
-{
-  "article": {
-    "title": "APIテスト",
-    "body": "APIテストです",
-    "status": "draft"
-  }
-}
-
-###
-
 ## 記事一覧（管理画面）
 GET http://localhost:3000/api/v1/admin/articles
 uid: test1@example.com
