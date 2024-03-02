@@ -1,9 +1,9 @@
 'use client'
 import { faArrowsRotate, faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 
-import { motion } from 'framer-motion'
 import { Article } from '@/types'
 
 type ArticleCardProps = {
@@ -12,7 +12,11 @@ type ArticleCardProps = {
 
 const ArticleCard = ({ article }: ArticleCardProps) => {
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
       <Link href={`/articles/${article.url}`}>
         <article className='mb-6 rounded-3xl bg-my-card-blue p-6 transition hover:bg-my-card-blue-hover'>
           <div className='flex gap-7'>
