@@ -52,4 +52,36 @@ RSpec.describe Article, type: :model do
       end
     end
   end
+
+  describe 'callbacks' do
+    describe 'before_save: :set_published_at' do
+      before { travel_to base_time }
+
+      let(:base_time) { '2024-03-02 12:34'.to_datetime }
+
+      context 'statusがpublished、かつpublished_atがnilの場合' do
+        subject { build(:article, :published, published_at: nil) }
+
+        it 'published_atが現在の時刻でセットされること' do
+          expect { subject.save }.to change { subject.published_at }.from(nil).to(base_time)
+        end
+      end
+
+      context 'statusがpublished以外、かつpublished_atがnilの場合' do
+        subject { build(:article, :not_published, published_at: nil) }
+
+        it 'published_atがセットされないこと' do
+          expect { subject.save }.not_to change { subject.published_at }
+        end
+      end
+
+      context 'statusがpublished、かつpublished_atがnilでない場合' do
+        subject { build(:article, :not_published, published_at: base_time - 1.day) }
+
+        it 'published_atがセットされないこと' do
+          expect { subject.save }.not_to change { subject.published_at }
+        end
+      end
+    end
+  end
 end

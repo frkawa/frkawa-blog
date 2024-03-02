@@ -5,7 +5,6 @@ FactoryBot.define do
     title { Faker::Book.title }
     body { Faker::Lorem.paragraphs.join("\n") }
     status { Article.status.values.sample }
-    published_at { Time.current }
 
     trait :published do
       status { Article.status.find_value(:published) }

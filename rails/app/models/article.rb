@@ -5,6 +5,8 @@ class Article < ApplicationRecord
 
   enumerize :status, in: %i[draft published archived], default: :draft, predicates: true
 
+  before_save :set_published_at, if: -> { status&.published? && published_at.nil? }
+
   with_options if: -> { status&.published? } do
     validates :title, presence: true
     validates :body, presence: true
@@ -15,4 +17,10 @@ class Article < ApplicationRecord
   validates :status, presence: true, inclusion: { in: self.status.values }
 
   scope :published, -> { where(status: :published) }
+
+  private
+
+    def set_published_at
+      self.published_at = Time.current
+    end
 end
