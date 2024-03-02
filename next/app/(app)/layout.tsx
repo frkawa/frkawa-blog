@@ -23,7 +23,7 @@ export default function RootLayout({
           <Header />
           <div className='grow md:flex'>
             <main className='col-span-7 mr-5 w-full md:w-2/3'>{children}</main>
-            <aside className='mb-8 w-full min-w-72 md:w-1/3'>
+            <aside className='w-full min-w-72 md:w-1/3'>
               <SideBar />
             </aside>
           </div>

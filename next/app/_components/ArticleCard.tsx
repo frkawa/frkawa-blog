@@ -16,10 +16,11 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
       initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className='mb-6 md:last:mb-0'
     >
       <Link href={`/articles/${article.url}`}>
-        <article className='mb-6 rounded-3xl bg-my-card-blue p-6 transition hover:bg-my-card-blue-hover'>
-          <div className='flex gap-7'>
+        <article className='rounded-3xl bg-my-card-blue p-6 transition hover:bg-my-card-blue-hover'>
+          <div className='flex gap-7 text-sm text-gray-400'>
             <span className='flex gap-2 leading-4'>
               <FontAwesomeIcon icon={faClock} className='h-4' />
               {article.published_at}

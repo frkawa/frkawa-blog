@@ -9,7 +9,6 @@ import { Article } from '@/types'
 
 import Pre from './_markdown/Pre'
 
-
 const ArticleDetail = ({ article }: { article: Article }) => {
   return (
     <motion.div
