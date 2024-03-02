@@ -6,6 +6,6 @@ class ArticleSerializer < BaseSerializer
   end
 
   attribute :updated_at do |resource|
-    (resource.updated_at == resource.created_at) ? '' : resource.updated_at.strftime('%Y-%m-%d')
+    (resource.updated_at.to_date == resource.created_at.to_date) ? '' : resource.updated_at.strftime('%Y-%m-%d')
   end
 end
