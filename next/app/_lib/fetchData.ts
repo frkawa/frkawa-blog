@@ -1,11 +1,11 @@
 import { notFound } from 'next/navigation'
 
 import { Article, ArticleFormData, SessionItems } from '@/types'
+import { revalidatePath } from 'next/cache'
 
 export const getAllArticles = async (): Promise<Article[]> => {
-  const res = await fetch('http://rails:3000/api/v1/articles', {
-    cache: 'no-store',
-  })
+  // NOTE: 記事一覧はOn-demand ISRとする。記事更新時にrevalidatePathを呼び出すことで再ビルドを行う
+  const res = await fetch('http://rails:3000/api/v1/articles')
 
   if (!res.ok) {
     throw new Error('Failed to fetch all articles.')
@@ -16,9 +16,8 @@ export const getAllArticles = async (): Promise<Article[]> => {
 }
 
 export const getArticleById = async (id: string): Promise<Article> => {
-  const res = await fetch(`http://rails:3000/api/v1/articles/${id}`, {
-    cache: 'no-store',
-  })
+  // NOTE: 記事詳細も同様にOn-demand ISRで再ビルドを行う
+  const res = await fetch(`http://rails:3000/api/v1/articles/${id}`)
 
   if (res.status === 404) {
     notFound()
@@ -125,6 +124,10 @@ export const updateArticle = async (
   if (!res.ok) {
     throw new Error('Failed to update the article.')
   }
+
+  // NOTE: 記事更新成功時、記事一覧と詳細ページを再ビルドする
+  revalidatePath('/')
+  revalidatePath(`/articles/${articleFormData.url}`)
 
   const article = await res.json()
   return article
