@@ -1,4 +1,3 @@
-import { revalidatePath } from 'next/cache'
 import { notFound } from 'next/navigation'
 
 import { Article, ArticleFormData, SessionItems } from '@/types'
@@ -113,7 +112,9 @@ export const updateArticle = async (
   }
 
   const res = await fetch(
-    `http://localhost:3000/api/v1/admin/articles/${articleFormData.id}`,
+    // NOTE: Server ActionやSCからのコールの場合はrails:3000の指定が必要？
+    //       Client Componentからのコールの場合はlocalhost:3000の指定でアクセスできる
+    `http://rails:3000/api/v1/admin/articles/${articleFormData.id}`,
     {
       headers: headers,
       method: 'PATCH',
@@ -124,10 +125,6 @@ export const updateArticle = async (
   if (!res.ok) {
     throw new Error('Failed to update the article.')
   }
-
-  // NOTE: 記事更新成功時、記事一覧と詳細ページを再ビルドする
-  revalidatePath('/')
-  revalidatePath(`/articles/${articleFormData.url}`)
 
   const article = await res.json()
   return article

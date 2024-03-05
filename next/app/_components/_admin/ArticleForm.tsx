@@ -2,7 +2,7 @@
 import React from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
-import { updateArticle } from '@/_lib/fetchData'
+import { handleUpdateArticle } from '@/_lib/handleForm'
 import { articleStatuses } from '@/_lib/i18n'
 import { ArticleFormData } from '@/types'
 
@@ -18,10 +18,14 @@ const ArticleForm = ({
     handleSubmit,
     formState: { errors },
   } = useForm<ArticleFormData>({ defaultValues: articleFormData })
+
   const onSubmit: SubmitHandler<ArticleFormData> = async (data) => {
-    console.log(data)
-    const updatedArticle = await updateArticle(token, data)
-    console.log(updatedArticle)
+    try {
+      // NOTE: 記事更新成功時にrevalidateするため、Server Actionの関数を間に挟んで更新APIをコールする
+      await handleUpdateArticle(token, data)
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   return (
