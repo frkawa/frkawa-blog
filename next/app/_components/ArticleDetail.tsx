@@ -19,15 +19,15 @@ const ArticleDetail = ({ article }: { article: Article }) => {
     >
       <article className='rounded-3xl bg-my-card-blue p-10'>
         <h1 className='text-4xl'>{article.title}</h1>
-        <div className='my-10 flex justify-center gap-7'>
-          <span className='flex gap-2 leading-4'>
-            <FontAwesomeIcon icon={faClock} className='h-4' />
+        <div className='my-10 flex flex-col text-center text-gray-400 md:flex-row md:justify-center'>
+          <span className='mb-3 gap-2 leading-4 md:mr-8'>
+            <FontAwesomeIcon icon={faClock} className='mr-2 h-4' />
             {article.published_at} に投稿
           </span>
           <span
-            className={`${article.updated_at ? 'flex' : 'hidden'} gap-2 leading-4`}
+            className={`${article.updated_at ? '' : 'hidden'} gap-2 leading-4`}
           >
-            <FontAwesomeIcon icon={faArrowsRotate} className='h-4' />
+            <FontAwesomeIcon icon={faArrowsRotate} className='mr-2 h-4' />
             {article.updated_at} に更新
           </span>
         </div>
