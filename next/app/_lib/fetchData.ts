@@ -1,7 +1,7 @@
+import { revalidatePath } from 'next/cache'
 import { notFound } from 'next/navigation'
 
 import { Article, ArticleFormData, SessionItems } from '@/types'
-import { revalidatePath } from 'next/cache'
 
 export const getAllArticles = async (): Promise<Article[]> => {
   // NOTE: 記事一覧はOn-demand ISRとする。記事更新時にrevalidatePathを呼び出すことで再ビルドを行う
