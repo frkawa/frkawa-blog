@@ -23,6 +23,7 @@ const SideBar = () => {
             alt='author icon'
             width={100}
             height={100}
+            priority={true}
             className='mx-auto mb-3'
           />
           <div className='mb-1'>AUTHOR: frkawa</div>
